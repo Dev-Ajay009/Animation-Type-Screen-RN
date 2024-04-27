@@ -78,7 +78,7 @@ const Home = ({navigation}) => {
     return (
         <>
          <View>
-                <CustomHeader title={'News'}/>
+                <CustomHeader title={'News'}  navigation={navigation}/>
             </View>
          {Lodear? 
          <>

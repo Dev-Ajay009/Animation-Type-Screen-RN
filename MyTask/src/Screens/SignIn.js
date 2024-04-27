@@ -14,13 +14,15 @@ const SignIn = ({ navigation }) => {
         (async () => {
             const savedUser = await AsyncStorage.getItem("user");
             const currentUser = JSON.parse(savedUser);
+            console.log("currentUser--",currentUser);
             setData(currentUser)
         })()
 
     }, [])
     const OnSubmit = () => {
         console.log('Data----->', Data);
-        if (Data.Email == Email && Data.Password == Password) {
+        const user = Data.find(u => u.Email == Email && u.Password == Password);
+        if (user) {
             navigation.navigate('BottomRoute')
         } else {
             alert('Please enter correct value')
@@ -35,7 +37,7 @@ const SignIn = ({ navigation }) => {
 
             }}>
             <View>
-                <CustomHeader title={'SignIn'} />
+                <CustomHeader title={'SignIn'}   navigation={navigation}/>
             </View>
             <View style={{
                 padding: 16

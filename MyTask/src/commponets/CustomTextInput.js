@@ -1,6 +1,6 @@
 import { View, Text, TextInput } from 'react-native'
 import React from 'react'
-
+//CustomTextInput
 const CustomTextInput = ({placeholder,onChangeText}) => {
   return (
     <View>

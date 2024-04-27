@@ -3,12 +3,13 @@ import React from 'react'
 import CustomHeader from '../commponets/CustomHeader'
 
 const NewDetails = ({ route, navigation }) => {
+    //get data from params
     const objs = route.params.Obj
     console.log('obj---', objs);
     return (
         <View>
             <View>
-                <CustomHeader title={'NewDetails'} />
+                <CustomHeader title={'NewDetails'}  navigation={navigation}  isBack={true}/>
             </View>
             <View style={{
 

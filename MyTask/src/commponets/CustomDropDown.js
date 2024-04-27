@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, FlatList } from 'react-native'
 import React, { useState } from 'react'
 import { template } from '@babel/core'
-
+//CustomDropDown
 const CustomDropDown = ({data,title,setType}) => {
     const [open,setOpen]=useState(false)
     const renderItem=({item})=>{

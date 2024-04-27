@@ -8,16 +8,16 @@ const Tab = createBottomTabNavigator();
 
 const BottomRoute = () => {
   return (
-    <Tab.Navigator 
-    screenOptions={{
-        headerShown:false
-    }}
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false
+      }}
     >
 
-    <Tab.Screen name="Personal" component={Personal} />
-    <Tab.Screen name="Business" component={Business} />
-    <Tab.Screen name="News" component={Home} />
-  </Tab.Navigator>
+      <Tab.Screen name="Personal" component={Personal} />
+      <Tab.Screen name="Business" component={Business} />
+      <Tab.Screen name="News" component={Home} />
+    </Tab.Navigator>
   )
 }
 

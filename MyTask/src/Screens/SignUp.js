@@ -6,6 +6,7 @@ import CustomBtn from '../commponets/CustomBtn';
 import CustomDropDown from '../commponets/CustomDropDown';
 import DocumentPicker, { types } from 'react-native-document-picker';
 import { SetData } from '../CommonFn/Common';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const SignUp = ({navigation}) => {
     
     const Data=[
@@ -36,7 +37,7 @@ const SignUp = ({navigation}) => {
     const [ConfirmPassword, setConfirmPassword] = useState('');
     const [ProfilePic, setProfilePic] = useState('');
     const [Type, setType] = useState('');
-    const OnSubmit=()=>{
+    const OnSubmit=async()=>{
             let data={
                     'FirstName':FirstName,
                     'LastName':LastName,
@@ -47,10 +48,30 @@ const SignUp = ({navigation}) => {
                     'Type':Type
             }
           if(Email != ''&& Password != '' && Type !=''){
-            SetData(data)
-           setTimeout(() => {
+            try {
+                // Get existing data from AsyncStorage
+                const savedUser = await AsyncStorage.getItem("user");
+          
+                // Parse the saved data into an array (or start with an empty array if there's no saved data)
+                const currentUser = savedUser ? JSON.parse(savedUser) : [];
+          
+                // Add the new data to the array
+                currentUser.push(data);
+          
+                // Store the updated array in AsyncStorage
+                await AsyncStorage.setItem("user", JSON.stringify(currentUser));
+          
+                // Do something after successfully saving (e.g., navigate to a different screen or show a success message)
+                console.log("User data saved successfully.");
+                      setTimeout(() => {
             navigation.navigate('SignIn')
            }, 500);
+              } catch (error) {
+                // Handle errors (e.g., error in saving data)
+                console.error("Error saving user data:", error);
+              }
+          
+     
           }else{
             alert('Please enter all value')
           }
@@ -64,7 +85,7 @@ const SignUp = ({navigation}) => {
             
         }}>
             <View>
-                <CustomHeader title={'SignUp'}/>
+                <CustomHeader title={'SignUp'}  navigation={navigation}/>
             </View>
             <View style={{
                 padding: 16
